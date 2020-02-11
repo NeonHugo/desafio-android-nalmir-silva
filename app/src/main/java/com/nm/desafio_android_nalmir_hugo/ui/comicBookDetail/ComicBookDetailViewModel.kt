@@ -23,6 +23,7 @@ open class ComicBookDetailViewModel(
     override fun doOnError(throwable: Throwable) {
         _loading.value = false
         _empty.value = true
+        _error.value = true
     }
 
     fun onComicDetail(characterId: Long) {

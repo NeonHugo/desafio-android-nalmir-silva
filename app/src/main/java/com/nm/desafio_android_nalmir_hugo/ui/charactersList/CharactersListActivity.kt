@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.nm.infrastructure.util.extensions.activity.setupToolbarWithTitle
 import com.nm.infrastructure.util.extensions.livecycle.bind
 import kotlinx.android.synthetic.main.characters_list_activity.*
 import kotlinx.android.synthetic.main.characters_list_content.*
+import kotlinx.android.synthetic.main.view_empty_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.security.AccessController.getContext
 
@@ -55,11 +57,27 @@ class CharactersListActivity : BaseActivity() {
             viewModel.onCharactersList()
         }
 
+        tv_without_alert.setOnClickListener {
+            characters_refresh.isRefreshing = true
+            emptyLayout.visibility = View.GONE
+            viewModel.onCharactersList()
+        }
     }
 
     private fun subscribeUi() {
+        bind(viewModel.error, ::showError)
         bind(viewModel.loading, ::showHideLoading)
         bind(viewModel.characters, ::showCharacterList)
+    }
+
+    private fun showError(error: Boolean) {
+        if (error) {
+            if (rv_characters.adapter == null || rv_characters.adapter!!.itemCount <=0 ) {
+                emptyLayout.visibility = View.VISIBLE
+            } else {
+                emptyLayout.visibility = View.GONE
+            }
+        }
     }
 
     private fun showHideLoading(loading: Boolean) {
@@ -89,7 +107,7 @@ class CharactersListActivity : BaseActivity() {
     }
 
     companion object {
-        fun newIntent(context: Context) : Intent {
+        fun newIntent(context: Context): Intent {
             return Intent(context, CharactersListActivity::class.java)
         }
     }

@@ -6,4 +6,9 @@
     <string name="character_list_activity_title">Characters List</string>
     <string name="character_detail_activity_title">Character Detail</string>
     <string name="comicbook_detail_activity_title">Comic Book Detail</string>
+
+    <string name="error_state_image">Error Image</string>
+
+    <string name="without_alert_label">Connection Error</string>
+    <string name="without_alert">A Connection error was detected. Click here if you want to try again.</string>
 </resources>

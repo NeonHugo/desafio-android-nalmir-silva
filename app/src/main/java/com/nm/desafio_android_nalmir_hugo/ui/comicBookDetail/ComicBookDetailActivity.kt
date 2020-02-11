@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import com.bumptech.glide.Glide
 import com.nm.desafio_android_nalmir_hugo.R
 import com.nm.desafio_android_nalmir_hugo.ui.charactersList.CharactersListActivity
@@ -16,7 +17,10 @@ import com.nm.infrastructure.util.extensions.format.toCurrency
 import com.nm.infrastructure.util.extensions.livecycle.bind
 import kotlinx.android.synthetic.main.characters_detail_activity.*
 import kotlinx.android.synthetic.main.characters_detail_content.*
+import kotlinx.android.synthetic.main.characters_list_content.*
 import kotlinx.android.synthetic.main.comicbook_detail_content.*
+import kotlinx.android.synthetic.main.comicbook_detail_content.emptyLayout
+import kotlinx.android.synthetic.main.view_empty_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ComicBookDetailActivity : BaseActivity() {
@@ -45,15 +49,37 @@ class ComicBookDetailActivity : BaseActivity() {
 
     private fun initActions() {
 
+        tv_without_alert.setOnClickListener {
+            progressLayout.visibility = View.VISIBLE
+            emptyLayout.visibility = View.GONE
+
+            viewModel.onComicDetail(
+                intent.getLongExtra(CHARACTER_ID, -1L)
+            )
+        }
+
     }
 
     private fun subscribeUi() {
+        bind(viewModel.error, ::showError)
         bind(viewModel.loading, ::showHideLoading)
         bind(viewModel.comic, ::showComic)
     }
 
-    private fun showHideLoading(loading: Boolean) {
+    private fun showError(error: Boolean) {
+        if (error) {
+            emptyLayout.visibility = View.VISIBLE
+        } else {
+            emptyLayout.visibility = View.GONE
+        }
+    }
 
+    private fun showHideLoading(loading: Boolean) {
+        if (loading) {
+            progressLayout.visibility = View.VISIBLE
+        } else {
+            progressLayout.visibility = View.GONE
+        }
     }
 
     private fun showComic(comic: Comic) {

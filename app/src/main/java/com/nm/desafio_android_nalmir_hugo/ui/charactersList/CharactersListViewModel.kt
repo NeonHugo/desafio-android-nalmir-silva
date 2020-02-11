@@ -28,6 +28,7 @@ open class CharactersListViewModel(
     override fun doOnError(throwable: Throwable) {
         _loading.value = false
         _empty.value = true
+        _error.value = true
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)

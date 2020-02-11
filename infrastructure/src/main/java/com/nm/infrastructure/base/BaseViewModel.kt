@@ -13,6 +13,8 @@ abstract class BaseViewModel(private val network: Network) : DefaultViewModel() 
     val loading: LiveData<Boolean> get() = _loading
 
     val empty: LiveData<Boolean> get() = _empty
+
+    val error: LiveData<Boolean> get() = _error
     
     protected val resourcesStringError: ResourcesStringError by inject()
 
@@ -20,6 +22,10 @@ abstract class BaseViewModel(private val network: Network) : DefaultViewModel() 
         FlexibleLiveData<Boolean>()
     protected val _empty =
         FlexibleLiveData<Boolean>()
+
+    protected val _error =
+        FlexibleLiveData<Boolean>()
+
     protected val _noConnectionError =
         FlexibleLiveData<String>()
 

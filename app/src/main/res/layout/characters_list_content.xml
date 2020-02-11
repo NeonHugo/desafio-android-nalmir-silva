@@ -19,9 +19,23 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_characters"
+            tools:itemCount="3"
+            tools:listitem="@layout/characters_list_cell"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <include
+        android:id="@+id/emptyLayout"
+        layout="@layout/view_empty_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/characters_refresh" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
