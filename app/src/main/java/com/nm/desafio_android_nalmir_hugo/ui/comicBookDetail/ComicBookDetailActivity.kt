@@ -83,7 +83,6 @@ class ComicBookDetailActivity : BaseActivity() {
     }
 
     private fun showComic(comic: Comic) {
-
         Glide.with(this)
             .load(comic.thumbnail)
             .placeholder(R.drawable.ic_person_black_24dp)
@@ -91,7 +90,7 @@ class ComicBookDetailActivity : BaseActivity() {
 
         comic_title.text = comic.title
         comic_description.text = comic.title
-        comic_price.text =  "Price  ${comic.price.toCurrency()}"
+        comic_price.text =  getString(R.string.price, comic.price.toCurrency())
     }
 
     private fun callCharacterList() {

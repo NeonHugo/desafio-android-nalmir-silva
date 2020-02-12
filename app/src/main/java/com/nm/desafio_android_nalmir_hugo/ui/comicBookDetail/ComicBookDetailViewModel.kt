@@ -42,9 +42,11 @@ open class ComicBookDetailViewModel(
                 }
                 is ErrorResponse -> {
                     _empty.value = true
+                    _error.value = true
                 }
                 else -> {
                     _empty.value = true
+                    _error.value = true
                 }
             }
         }

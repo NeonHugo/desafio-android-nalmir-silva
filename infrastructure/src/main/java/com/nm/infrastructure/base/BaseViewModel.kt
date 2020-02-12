@@ -16,7 +16,7 @@ abstract class BaseViewModel(private val network: Network) : DefaultViewModel() 
 
     val error: LiveData<Boolean> get() = _error
     
-    protected val resourcesStringError: ResourcesStringError by inject()
+    //protected val resourcesStringError: ResourcesStringError by inject()
 
     protected val _loading =
         FlexibleLiveData<Boolean>()
@@ -44,7 +44,7 @@ abstract class BaseViewModel(private val network: Network) : DefaultViewModel() 
                     _loading.value = false
                 }
             }
-            else _noConnectionError.value = resourcesStringError.noConnectionError
+            else _noConnectionError.value = "Deu Ruim"//resourcesStringError.noConnectionError
         }
     }
 

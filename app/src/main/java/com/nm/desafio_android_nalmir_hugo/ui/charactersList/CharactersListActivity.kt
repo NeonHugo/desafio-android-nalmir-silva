@@ -47,7 +47,6 @@ class CharactersListActivity : BaseActivity() {
         decorator.setDrawable(resources.getDrawable(R.drawable.divider_line))
 
         rv_characters.layoutManager = LinearLayoutManager(this)
-        //rv_characters.addItemDecoration(DividerItemDecoration(rv_characters.context, DividerItemDecoration.VERTICAL))
         rv_characters.addItemDecoration(decorator)
     }
 
@@ -85,9 +84,9 @@ class CharactersListActivity : BaseActivity() {
     }
 
 
-    private fun showCharacterList(tracks: List<MCharacter>) {
+    private fun showCharacterList(characters: List<MCharacter>) {
         charactersListAdapter =
-            CharactersListAdapter(this, R.layout.characters_list_cell, tracks, Glide.with(this)) {
+            CharactersListAdapter(this, R.layout.characters_list_cell, characters, Glide.with(this)) {
                 callCharacterDetail(it)
             }
 

@@ -1,7 +1,7 @@
 package com.nm.infrastructure.net
 
-open class ApiError(
-    open val status: Int? = null,
-    open val error: String? = null,
-    open val errorMessage: String? = null
+data class ApiError(
+    val status: Int? = null,
+    val error: String? = null,
+    val errorMessage: String? = null
 )

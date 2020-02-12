@@ -13,6 +13,7 @@ import com.nm.infrastructure.base.BaseActivity
 import com.nm.infrastructure.base.BaseViewModel
 import com.nm.infrastructure.util.extensions.activity.setupToolbarWithTitle
 import com.nm.infrastructure.util.extensions.livecycle.bind
+import com.nm.infrastructure.util.extensions.view.setSafeOnClickListener
 import kotlinx.android.synthetic.main.characters_detail_activity.*
 import kotlinx.android.synthetic.main.characters_detail_content.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,7 +45,7 @@ class CharactersDetailActivity : BaseActivity() {
     }
 
     private fun initActions() {
-        btn_comics.setOnClickListener {
+        btn_comics.setSafeOnClickListener {
             callComicBookDetail()
         }
 
@@ -55,9 +56,7 @@ class CharactersDetailActivity : BaseActivity() {
             this,
             heroID
         )
-
         startActivity(intent)
-
         finish()
     }
 

@@ -53,3 +53,17 @@ fun <T> LiveData<T>.getOrAwaitValue(
     @Suppress("UNCHECKED_CAST")
     return data as T
 }
+
+@Throws(InterruptedException::class)
+fun <T> LiveData<T>.getTestValue(): T? {
+    var value: T? = null
+    val latch = CountDownLatch(1)
+    val observer = Observer<T> {
+        value = it
+        latch.countDown()
+    }
+    latch.await(2, TimeUnit.SECONDS)
+    observeForever(observer)
+    removeObserver(observer)
+    return value
+}

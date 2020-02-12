@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.nm.desafio_android_nalmir_hugo.R
 import com.nm.domain.entity.MCharacter
+import com.nm.infrastructure.util.extensions.view.setSafeOnClickListener
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -42,7 +43,7 @@ class CharactersListAdapter(
         var title: TextView = itemView.findViewById(R.id.title)
 
         init {
-            itemView.rootView.setOnClickListener {
+            itemView.rootView.setSafeOnClickListener {
                 val position = adapterPosition
                 val item = data!![position]
                 itemListener.invoke(item)

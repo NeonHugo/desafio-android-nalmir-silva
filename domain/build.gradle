@@ -84,6 +84,8 @@ dependencies {
     // JUnit
     testImplementation libraries.junit
 
+    // Mockito
+    testImplementation libraries.mockito
     // Mockk
     testImplementation libraries.mockk
 

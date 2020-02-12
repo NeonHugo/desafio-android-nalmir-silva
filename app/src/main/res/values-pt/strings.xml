@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">desafio-android-nalmir-hugo</string>
+    <string name="action_settings">Configurações</string>
+    <string name="error_state_image">Erro na Imagem</string>
+
+    <string name="without_alert_label">Erro de Conexão</string>
+    <string name="without_alert">Un erro de conexão foi detectado. Click aqui se você quiser tentar novamente.</string>
+
+    <!-- Character List -->
+    <string name="character_list_activity_title">Lista de Personagens</string>
+
+    <!-- Character Detail -->
+    <string name="character_detail_activity_title">Detalhes do Personagem</string>
+    <string name="hero_image_description">Imagem do Herói</string>
+    <string name="comic_price">Preço</string>
+
+    <!-- Comic Detail -->
+    <string name="comicbook_detail_activity_title">Detalhes da Revista em Quadrinhos</string>
+    <string name="comic_image_description">Imagem da Revista em Quadrinhos</string>
+    <string name="price">Preço:  %1$s</string>
+
+</resources>

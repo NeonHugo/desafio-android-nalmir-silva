@@ -2,9 +2,10 @@ package com.nm.domain.usecase
 
 import com.nm.domain.entity.Comic
 import com.nm.domain.repository.ComicsRepository
+import com.nm.infrastructure.net.ApiError
+import com.nm.infrastructure.net.ErrorResponse
 import com.nm.infrastructure.net.ResultResponse
 import com.nm.infrastructure.net.SuccessResponse
-import java.util.ArrayList
 
 
 class ComicUseCaseImpl(
@@ -17,10 +18,20 @@ class ComicUseCaseImpl(
         apiKey: String,
         hash: String
     ): ResultResponse<Comic> {
-        val comicsList = (mComicsRepository.showComicsAvailable(characterId, ts, apiKey, hash)
-                as SuccessResponse).body
-
-        return SuccessResponse(highiestPrice(comicsList))
+        return when (val results = mComicsRepository.showComicsAvailable(characterId, ts, apiKey, hash)) {
+            is SuccessResponse -> {
+                SuccessResponse(highiestPrice(results.body))
+            }
+            else -> {
+                ErrorResponse(
+                    ApiError(
+                        10,
+                        "General Error!",
+                        "General Error!"
+                    )
+                )
+            }
+        }
     }
 
     private fun highiestPrice(comics: List<Comic>): Comic {
